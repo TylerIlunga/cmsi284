@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
   }
 
   int rows = atoi(argv[1]);
-  int ** pnumbers = (int **) malloc(rows * sizeof(int *));
+  int **pnumbers = (int **) malloc(rows * sizeof(int *));
   populateTriangle(pnumbers, rows);
   freeMemory(pnumbers, rows);
   return 0;
