@@ -8,7 +8,6 @@ void fibonacci(int x) {
   int c = 0;
 
   while (x > 0) {
-    int temp = a;
     a = b;
     b = c;
     c = a + b;
