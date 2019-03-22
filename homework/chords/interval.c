@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include "interval.h"
 
 int findChordIndex(char *chords[], char *argument, int chordsSize) {
@@ -13,8 +12,25 @@ int findChordIndex(char *chords[], char *argument, int chordsSize) {
   return -1;
 }
 
-char* getIntervalName(int distance_between) {
-  switch(distance_between) {
+int getDistanceBetween(int firstChordIndex, char *chords[], char *secondChord) {
+  int index = firstChordIndex;
+  int distance = 0;
+  while (strcmp(chords[index], secondChord) != 0) {
+    distance++;
+    if (index == 11) {
+      index = 0;
+      continue;
+    }
+    index++;
+  }
+  return distance;
+}
+
+char* getIntervalName(int distanceBetween) {
+  switch(distanceBetween) {
+    case 0:
+    case 12:
+       return "perfect octave";
      case 1:
         return "minor second";
      case 2:
@@ -37,8 +53,6 @@ char* getIntervalName(int distance_between) {
         return "minor seventh";
      case 11:
         return "major seventh";
-     case 12:
-        return "perfect octave";
   }
   return NULL;
 }
@@ -69,7 +83,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  int distance_between = (int)fabs((double)(firstChordIndex - secondChordIndex));
-  printf("%s to %s is a %s\n", firstChord, secondChord, getIntervalName(distance_between));
+  int distanceBetween = getDistanceBetween(firstChordIndex, chords, secondChord);
+  printf("%s to %s is a %s\n", firstChord, secondChord, getIntervalName(distanceBetween));
   return 0;
 }
