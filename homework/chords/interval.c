@@ -3,8 +3,10 @@
 #include <string.h>
 #include "interval.h"
 
-int findChordIndex(char *chords[], char *argument, int chordsSize) {
-  for (int i = 0; i < chordsSize; i++) {
+#define CHORDS_SIZE 12
+
+int findChordIndex(char *chords[], char *argument) {
+  for (int i = 0; i < CHORDS_SIZE; i++) {
     if (strcmp(chords[i], argument) == 0) {
       return i;
     }
@@ -17,7 +19,7 @@ int getDistanceBetween(int firstChordIndex, char *chords[], char *secondChord) {
   int distance = 0;
   while (strcmp(chords[index], secondChord) != 0) {
     distance++;
-    if (index == 11) {
+    if (index == CHORDS_SIZE - 1) {
       index = 0;
       continue;
     }
@@ -65,19 +67,19 @@ int main(int argc, char** argv) {
 
   char *firstChord = argv[1];
   char *secondChord = argv[2];
-  char *chords[] = {
+  char *chords[CHORDS_SIZE] = {
     "A", "A#", "B", "C",
     "C#", "D", "D#", "E",
     "F", "F#", "G", "G#",
   };
 
-  int firstChordIndex = findChordIndex(chords, firstChord, 12);
+  int firstChordIndex = findChordIndex(chords, firstChord);
   if (firstChordIndex == -1) {
     printf("No such key: %s\n", firstChord);
     return 1;
   }
 
-  int secondChordIndex = findChordIndex(chords, secondChord, 12);
+  int secondChordIndex = findChordIndex(chords, secondChord);
   if (secondChordIndex == -1) {
     printf("No such key: %s\n", secondChord);
     return 1;
