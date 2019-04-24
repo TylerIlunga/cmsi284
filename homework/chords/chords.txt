@@ -1,0 +1,8 @@
+chord.c:
+
+Major: 4 keys[record], then 3 keys after[record]
+Minor; 3 keys[record], then 4 keys[record]
+7th: 4, 3, 3
+dim7: 3, 3, 3
+
+interval.c:
